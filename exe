@@ -1,0 +1,9 @@
+//iniatiliser un projet node
+// main app.js / server.js
+// start => app.js
+// dev nodemon app.js
+// Modules
+// 	-> nodemon dépendances de dev
+// 	-> Express
+// 	-> Body parser
+// 	-> cors
