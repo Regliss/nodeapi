@@ -1,0 +1,9 @@
+// Model Product
+-> Prop: price, title, descrisption, img
+
+//Controller
+-> Create product -> POST
+-> Get all products -> GET
+
+// Routes
+-> api/V1/products/
