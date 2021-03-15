@@ -9,6 +9,9 @@ exports.create = (req, res) => {
 	const user = new User({
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
+		address: req.body.address,
+		phone: req.body.phone,
+		isAdmin: req.body.isAdmin,
 		email: req.body.email,
 		password: hasedPassword,
 	});
@@ -31,6 +34,42 @@ exports.create = (req, res) => {
 			message: err.message || "some error occured"
 		})
 	})
+}
+
+exports.addAdmin = (req, res) => {
+
+	// if (req.params.isAdmin = true) {
+
+		let hasedPassword = bcrypt.hashSync(req.body.password, 10);
+		const user = new User({
+			firstName: req.body.firstName,
+			lastName: req.body.lastName,
+			address: req.body.address,
+			phone: req.body.phone,
+			isAdmin: req.body.isAdmin,
+			email: req.body.email,
+			password: hasedPassword,
+		});
+
+		user.save()
+		.then((data) => {
+			let userToken = jwt.sign({
+				id:data._id
+			}, 'supersecret', { expiresIn: 86400 });
+
+			res.send({
+				token: userToken,
+				auth: true
+			});
+		})
+		.catch((err) => {
+			// console.log(error);
+			res.status(500).send({
+				error: 500,
+				message: err.message || "some error occured"
+			})
+		})
+	// }
 }
 
 exports.findOne = (req, res) => {

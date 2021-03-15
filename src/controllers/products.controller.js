@@ -1,4 +1,5 @@
 const Product = require('../models/product.model');
+const Category = require('../models/category.model');
 
 exports.create = (req, res) => {
   const product = new Product({
@@ -6,6 +7,7 @@ exports.create = (req, res) => {
     price: req.body.price,
     description: req.body.description,
     image: req.body.image,
+    category: req.body.category,
   });
 
   product

@@ -23,6 +23,18 @@ const userSchema = new Schema({
 		minLength: 4,
 		unique: true,
 	},
+	isAdmin: {
+		type: Boolean,
+		default: false,
+		required: true,
+	},
+	address: {
+		type: String,
+	},
+	phone: {
+		type: Number,
+		maxLength: 15,
+	},
 	orders: [{
 		type:Schema.Types.ObjectId, ref:'Order'
 	}]
