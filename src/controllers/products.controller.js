@@ -40,6 +40,7 @@ exports.getProduct = (req, res) => {
 
 exports.getProducts = (req, res) => {
   Product.find()
+  .populate('category')
     .then((data) => {
       if (!data) {
         res.status(404).send({

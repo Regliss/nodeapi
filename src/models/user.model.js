@@ -32,7 +32,7 @@ const userSchema = new Schema({
 		type: String,
 	},
 	phone: {
-		type: Number,
+		type: String,
 		maxLength: 15,
 	},
 	orders: [{

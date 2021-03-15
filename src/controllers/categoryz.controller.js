@@ -3,7 +3,6 @@ const Category = require('../models/category.model');
 exports.create = (req, res) => {
   const category = new Category({
     title: req.body.title,
-    products: req.body.products 
 
   });
 
@@ -11,7 +10,7 @@ exports.create = (req, res) => {
     .save()
     .then((data) => {
       res.send({
-        data: data,
+        category: data,
       });
     })
     .catch((err) => res.send(err));
