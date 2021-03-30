@@ -17,7 +17,7 @@ const userSchemaValidation = (req, res, next) => {
 	// console.log(validation);
 
 	if (validation.error) {
-		res.send({
+		return res.send({
 			error: validation.error
 		})
 	}

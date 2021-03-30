@@ -129,3 +129,23 @@ exports.login = (req, res) => {
       res.send(err);
     });
 };
+
+exports.update = (req, res) => {
+    User.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            phone: req.body.phone,
+            address: req.body.address,
+        }
+    )
+    .then((data) => {
+        res.json({
+            message :" utilisateur modifier",
+            data: data
+        });
+    }).catch((err) => {
+        console.log(err.message);
+    })
+};
