@@ -130,6 +130,19 @@ exports.login = (req, res) => {
     });
 };
 
+exports.getUsers = (req, res) => {
+  User.find()
+    .then((data) => {
+      if (!data) {
+        res.status(404).send({
+          message: `User with id ${req.params.id} not found`,
+        });
+      }
+      res.send(data);
+    })
+    .catch((err) => res.send(err));
+};
+
 exports.update = (req, res) => {
     User.findOneAndUpdate(
         { _id: req.params.id },
@@ -149,3 +162,16 @@ exports.update = (req, res) => {
         console.log(err.message);
     })
 };
+
+exports.removeOne = (req, res) => {
+	User.findByIdAndRemove(req.params.id)
+	.then((data) => {
+		// if (!data) {
+		// 	res.status(404).send({
+		// 		message: `User with id ${req.params.id} not found`
+		// 	})
+		// }
+		res.send(data);
+	})
+	.catch((err) =>	res.send(err));
+}
