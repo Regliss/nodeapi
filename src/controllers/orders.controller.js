@@ -6,6 +6,7 @@ exports.create = (req, res) => {
     total: req.body.total,
     user: req.body.user,
     products: req.body.products,
+    status: req.body.status,
   });
 
   order
@@ -59,3 +60,20 @@ exports.getOrders = (req, res) => {
     })
     .catch((err) => res.send(err));
 };
+
+exports.update = (req, res) => {
+    Order.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+            status: req.body.status,
+        }
+    )
+    .then((data) => {
+        res.json({
+            message :"Commande modifié",
+            data: data
+        });
+    }).catch((err) => {
+        console.log(err.message);
+    })
+}
