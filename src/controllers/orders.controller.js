@@ -33,7 +33,7 @@ exports.create = (req, res) => {
 
 exports.getOrder = (req, res) => {
   Order.findById(req.params.id)
-  .populate('products')
+  // .populate('products')
   .populate('user')
     .then((data) => {
       if (!data) {
@@ -70,10 +70,23 @@ exports.update = (req, res) => {
     )
     .then((data) => {
         res.json({
-            message :"Commande modifié",
+            message :" order modifier",
             data: data
         });
     }).catch((err) => {
         console.log(err.message);
     })
+};
+
+exports.removeOne = (req, res) => {
+	Order.findByIdAndRemove(req.params.id)
+	.then((data) => {
+		// if (!data) {
+		// 	res.status(404).send({
+		// 		message: `Order with id ${req.params.id} not found`
+		// 	})
+		// }
+		res.send(data);
+	})
+	.catch((err) =>	res.send(err));
 }

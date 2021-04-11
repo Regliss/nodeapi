@@ -10,8 +10,8 @@ const orderSchema = new Schema({
 		type: Schema.Types.ObjectId, ref: 'Product'
 	}],
 	status: {
-		type: Boolean,
-		default: "En cours"
+		type: String,
+		default: "En Cours"
 	},
 })
 
